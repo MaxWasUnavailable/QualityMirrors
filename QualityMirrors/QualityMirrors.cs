@@ -7,7 +7,7 @@ namespace QualityMirrors;
 [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
 public class QualityMirrors : BaseUnityPlugin
 {
-    private new static readonly ManualLogSource Logger = new(PluginInfo.PLUGIN_NAME);
+    private new static ManualLogSource? Logger;
     internal static QualityMirrors? Instance { get; private set; }
     private static Harmony? Harmony { get; set; }
     private static bool IsPatched { get; set; }
@@ -15,6 +15,8 @@ public class QualityMirrors : BaseUnityPlugin
     private void Awake()
     {
         Instance = this;
+
+        Logger = base.Logger;
 
         Harmony = new Harmony(PluginInfo.PLUGIN_GUID);
 
